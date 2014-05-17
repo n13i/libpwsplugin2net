@@ -9,10 +9,7 @@ namespace PWSPlugin2Net
 	public interface class IPluginInstance
 	{
 	public:
-		delegate void FunctionRegistrar(String^ functionName, PluginFunctions::Proc^ f, String^ descriptor);
-
 		virtual void Initialize(PluginHost^);
-		virtual void RegisterFunctions(FunctionRegistrar^);
 		virtual void Destroy();
 	};
 }

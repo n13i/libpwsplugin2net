@@ -41,6 +41,10 @@ namespace PWSPlugin2Net
 		{
 			SystemFunctions^ get() { return this->systemFunctions; }
 		}
+		property PluginFunctions^ PluginFunc
+		{
+			PluginFunctions^ get() { return this->pluginFunctions; }
+		}
 		property Menu^ PluginMenu
 		{
 			Menu^ get() { return this->menu; }
@@ -63,7 +67,6 @@ namespace PWSPlugin2Net
 
 	private:
 		void UpdateInstance(TPWPInstance* instance);
-		void RegisterFunction(String^, PluginFunctions::Proc^, String^);
 	
 	internal:
 		void ExceptionHandler(Exception^ e);

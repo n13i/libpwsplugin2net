@@ -23,7 +23,6 @@ PluginHost::PluginHost(IPlugin^ plugin, TPWPInstance* instance)
 	{
 		this->pluginInstance = plugin->CreateNewInstance();
 		this->pluginInstance->Initialize(this);
-		this->pluginInstance->RegisterFunctions(gcnew IPluginInstance::FunctionRegistrar(this, &PluginHost::RegisterFunction));
 	}
 	catch (Exception^ e)
 	{
@@ -50,17 +49,6 @@ PluginHost::!PluginHost()
 	{
 		timer->Destroy();
 	}
-}
-
-// private
-void PluginHost::RegisterFunction(String^ functionName, PluginFunctions::Proc^ f, String^ descriptor)
-{
-	if (nullptr == this->instance)
-	{
-		return;
-	}
-
-	this->pluginFunctions->Add(this->instance, functionName, f, descriptor);
 }
 
 Timer^ PluginHost::CreateTimer(int interval, Timer::Mode mode, Timer::Proc^ proc)
@@ -169,7 +157,7 @@ void PluginHost::Callback_PluginFunction(TPWPInstance* instance, List<RTValue^>^
 
 	try
 	{
-		this->pluginFunctions->Call(this->systemFunctions, param, args, retVal);
+		this->pluginFunctions->Call(param, args, retVal);
 	}
 	catch (Exception^ e)
 	{
@@ -188,7 +176,7 @@ void PluginHost::Callback_Timer(TPWPInstance* instance, TPWPTimerHandle handle, 
 
 	try
 	{
-		this->timers[param]->Call(this->systemFunctions);
+		this->timers[param]->Call();
 	}
 	catch (Exception^ e)
 	{
@@ -268,6 +256,7 @@ void PluginHost::UpdateInstance(TPWPInstance* instance)
 	this->instance = instance;
 
 	this->systemFunctions->UpdateInstance(instance);
+	this->pluginFunctions->UpdateInstance(instance);
 	this->menu->UpdateInstance(instance);
 	for each (Invoker^ invoker in this->invokers.Values)
 	{
