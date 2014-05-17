@@ -24,7 +24,7 @@ Invoker::Invoker(TPWPInstance* instance, DWORD id)
  *   引数は10個まで
  *   char型，double型，固定長配列，可変長配列には未対応
  */
-int Invoker::Invoke(Style style, String^ type, String^ funcname, InvokeCallback^ cb, ...array<Object^>^ args)
+int Invoker::Invoke(Style style, String^ type, String^ funcname, Proc^ cb, ...array<Object^>^ args)
 {
 	System::Diagnostics::Debug::WriteLine("{0}: called", __FUNCTIONW__);
 

@@ -23,16 +23,16 @@ namespace PWSPlugin2Net
 			None = AYAF_NONE,
 		};
 
-		delegate void InvokeCallback(ExitState, RTValue^);
+		delegate void Proc(ExitState, RTValue^);
 
 	private:
 		TPWPInstance* instance;
 		DWORD id;
-		InvokeCallback^ callback;
+		Proc^ callback;
 
 	public:
 		Invoker(TPWPInstance*, DWORD);
-		int Invoke(Style, String^, String^, InvokeCallback^, ...array<Object^>^);
+		int Invoke(Style, String^, String^, Proc^, ...array<Object^>^);
 		void Callback(exit_state_t, RTValue^);
 		void UpdateInstance(TPWPInstance*);
 	};
