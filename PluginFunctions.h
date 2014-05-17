@@ -1,6 +1,6 @@
 #pragma once
 
-#include "SystemFunctions.h"
+#include "pwsplugin.h"
 #include "RTValue.h"
 
 using namespace System;
@@ -10,18 +10,22 @@ namespace PWSPlugin2Net
 {
 	public ref class PluginFunctions
 	{
+	internal:
+		TPWPInstance* instance;
+
 	public:
-		delegate void Proc(List<RTValue^>^, RTValue^, SystemFunctions^);
+		delegate void Proc(List<RTValue^>^, RTValue^);
 
 	private:
 		Dictionary<DWORD, Proc^> functions;
 
 	public:
 		PluginFunctions();
+		void UpdateInstance(TPWPInstance*);
 
-		void Add(TPWPInstance*, String^, Proc^, String^);
+		void Add(String^, Proc^, String^);
 		bool Exists(DWORD);
-		void Call(SystemFunctions^, DWORD, List<RTValue^>^, RTValue^);
+		void Call(DWORD, List<RTValue^>^, RTValue^);
 	};
 }
 
