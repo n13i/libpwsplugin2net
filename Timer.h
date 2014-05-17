@@ -8,7 +8,7 @@ namespace PWSPlugin2Net
 	public ref class Timer
 	{
 	public:
-		delegate void Proc(SystemFunctions^);
+		delegate void Proc();
 
 	private:
 		TPWPTimerHandle handle;
@@ -20,7 +20,7 @@ namespace PWSPlugin2Net
 			Interval = TM_INTERVAL,
 		};
 		Timer(TPWPTimerHandle, Proc^);
-		void Call(SystemFunctions^);
+		void Call();
 		int Destroy();
 		int Start();
 		int Stop();

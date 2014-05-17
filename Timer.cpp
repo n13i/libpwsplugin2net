@@ -11,9 +11,9 @@ Timer::Timer(TPWPTimerHandle h, Proc^ tp)
 	this->timerProc = tp;
 }
 
-void Timer::Call(SystemFunctions^ sf)
+void Timer::Call()
 {
-	this->timerProc(sf);
+	this->timerProc();
 }
 
 int Timer::Destroy()
