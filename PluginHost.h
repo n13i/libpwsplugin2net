@@ -24,7 +24,7 @@ namespace PWSPlugin2Net
 		TPWPInstance* instance;
 
 	public:
-		delegate int SynchronizeProc(SystemFunctions^);
+		delegate int SynchronizeProc();
 
 	private:
 		System::Reflection::Assembly^ pluginAsm;

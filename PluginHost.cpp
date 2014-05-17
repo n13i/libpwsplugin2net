@@ -236,7 +236,7 @@ int PluginHost::Callback_Synchronize(TPWPInstance* instance, DWORD param)
 	int ret;
 	try
 	{
-		ret = proc(this->systemFunctions);
+		ret = proc();
 	}
 	catch (Exception^ e)
 	{
