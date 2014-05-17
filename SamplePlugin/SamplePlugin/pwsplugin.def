@@ -1,0 +1,7 @@
+LIBRARY   SamplePlugin
+
+EXPORTS
+	PWCInitialize
+	PWCDestroy
+	PWCNewInstance
+	PWCDestroyInstance
